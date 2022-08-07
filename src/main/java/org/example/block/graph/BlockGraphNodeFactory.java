@@ -1,16 +1,16 @@
-package org.example.blocks.input;
+package org.example.block.graph;
 
 import org.example.blocks.Block;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockPermutationsGenerator {
+public class BlockGraphNodeFactory {
 
-    public List<Block> generate(Block block) {
-        List<Block> permutationsList = new ArrayList<>();
+    public List<BlockGraphNode> create(Block block) {
+        List<BlockGraphNode> permutationsList = new ArrayList<>();
 
-        permutationsList.add(block);
+        permutationsList.add(new BlockGraphNode(block.getBlockId(), block.getWidth(), block.getLength(), block.getHeight()));
 
         if (block.getWidth() == block.getLength() && block.getWidth() == block.getHeight()) {
             return permutationsList;
@@ -19,9 +19,9 @@ public class BlockPermutationsGenerator {
             int length = block.getLength();
             int height = block.getWidth();
             if (width > length) {
-                permutationsList.add(new Block(block.getBlockId(), length, width, height));
+                permutationsList.add(new BlockGraphNode(block.getBlockId(), length, width, height));
             } else {
-                permutationsList.add(new Block(block.getBlockId(), width, length, height));
+                permutationsList.add(new BlockGraphNode(block.getBlockId(), width, length, height));
             }
         } else {
             if (block.getWidth() != block.getHeight()) {
@@ -29,9 +29,9 @@ public class BlockPermutationsGenerator {
                 int height = block.getWidth();
                 int length = block.getLength();
                 if (width > length) {
-                    permutationsList.add(new Block(block.getBlockId(), length, width, height));
+                    permutationsList.add(new BlockGraphNode(block.getBlockId(), length, width, height));
                 } else {
-                    permutationsList.add(new Block(block.getBlockId(), width, length, height));
+                    permutationsList.add(new BlockGraphNode(block.getBlockId(), width, length, height));
                 }
             }
 
@@ -41,9 +41,9 @@ public class BlockPermutationsGenerator {
                 int height = block.getLength();
 
                 if (width > length) {
-                    permutationsList.add(new Block(block.getBlockId(), length, width, height));
+                    permutationsList.add(new BlockGraphNode(block.getBlockId(), length, width, height));
                 } else {
-                    permutationsList.add(new Block(block.getBlockId(), width, length, height));
+                    permutationsList.add(new BlockGraphNode(block.getBlockId(), width, length, height));
                 }
             }
         }

@@ -1,39 +1,42 @@
 package org.example.blocks;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.example.blocks.graph.StackableBlocksGraph;
-import org.example.blocks.graph.StackableBlocksGraphBuilder;
-import org.example.blocks.graph.StackableBlocksGraphTraverser;
-import org.example.blocks.input.BlockPermutationsGenerator;
+import org.example.block.graph.BlockGraphBuilder;
+import org.example.block.graph.BlockGraphNode;
+import org.example.block.graph.BlocksGraphTraverser;
 import org.example.blocks.input.BlocksReader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
 public class BlockPuzzleRunner {
 
     private final BlocksReader blocksReader;
-    private final StackableBlocksGraphBuilder stackableBlocksGraphBuilder;
-    private final StackableBlocksGraphTraverser stackableBlocksGraphTraverser;
+    private final BlockGraphBuilder blockGraphBuilder;
+    private final BlocksGraphTraverser blocksGraphTraverser;
 
     public BlockPuzzleRunner(BlocksReader blocksReader,
-                             StackableBlocksGraphBuilder stackableBlocksGraphBuilder,
-                             StackableBlocksGraphTraverser stackableBlocksGraphTraverser) {
+                             BlockGraphBuilder blockGraphBuilder,
+                             BlocksGraphTraverser blocksGraphTraverser) {
         this.blocksReader = requireNonNull(blocksReader);
-        this.stackableBlocksGraphBuilder = requireNonNull(stackableBlocksGraphBuilder);
-        this.stackableBlocksGraphTraverser = requireNonNull(stackableBlocksGraphTraverser);
+        this.blockGraphBuilder = requireNonNull(blockGraphBuilder);
+        this.blocksGraphTraverser = requireNonNull(blocksGraphTraverser);
     }
 
     public void run() throws IOException {
         List<Block> blockList = blocksReader.readBlocks(System.in);
 
-        StackableBlocksGraph stackableBlocksGraph = stackableBlocksGraphBuilder.buildGraph(blockList);
-        stackableBlocksGraph.printGraph();
+        System.out.println("Number of blocks read are " + blockList.size() + "\n" + blockList);
 
-        Pair<Integer, List<Block>> longestPath = stackableBlocksGraphTraverser.getLongestPath(stackableBlocksGraph);
-        System.out.println("Longest path length =" + longestPath.getKey() + " path: " + longestPath.getValue());
+        Set<BlockGraphNode> rootNodes = blockGraphBuilder.buildGraph(blockList);
+
+        System.out.println("Number of root Nodes are " + rootNodes.size() + "\n" + rootNodes);
+
+        Pair<Integer, List<BlockGraphNode>> longestPathPair = blocksGraphTraverser.getLongestPath(rootNodes);
+
+        System.out.println("Longest path length =" + longestPathPair.getKey() + " Path" + longestPathPair.getValue());
     }
 }
