@@ -7,34 +7,7 @@ import java.util.*;
 
 public class BlockGraphTraverser {
 
-    public Pair<Integer, List<BlockGraphNode>> getLongestPath(Set<BlockGraphNode> rootNodes) {
-
-        int maxHeight = 0;
-        List<BlockGraphNode> longestPath = null;
-
-        for (BlockGraphNode blockGraphNode : rootNodes) {
-            List<List<BlockGraphNode>> pathsFromRoot = getAllPaths(blockGraphNode);
-            for (List<BlockGraphNode> path : pathsFromRoot) {
-                int newHeight = findHeight(path);
-                if (newHeight > maxHeight) {
-                    maxHeight = newHeight;
-                    longestPath = path;
-                }
-            }
-        }
-        return Pair.of(maxHeight, longestPath);
-    }
-
-    private int findHeight(List<BlockGraphNode> blockGraphNodes) {
-        int height = 0;
-        for (BlockGraphNode blockGraphNode : blockGraphNodes) {
-            height = height + (blockGraphNode.getSameSizeNodeCount() * blockGraphNode.getHeight());
-        }
-        return height;
-    }
-
-
-    private List<List<BlockGraphNode>> getAllPaths(BlockGraphNode rootNode) {
+    public List<List<BlockGraphNode>> getAllPaths(BlockGraphNode rootNode) {
         List<List<BlockGraphNode>> allPaths = new LinkedList<>();
 
         Deque<Pair<BlockGraphNode, Integer>> blockNodesDequeWithDepth = new LinkedList<>();

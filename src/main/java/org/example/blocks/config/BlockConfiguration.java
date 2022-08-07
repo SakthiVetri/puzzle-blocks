@@ -3,6 +3,7 @@ package org.example.blocks.config;
 import org.example.block.graph.BlockGraphBuilder;
 import org.example.block.graph.BlockGraphNodeFactory;
 import org.example.block.graph.BlockGraphTraverser;
+import org.example.block.graph.LongestPathTraverser;
 import org.example.blocks.BlockPuzzleRunner;
 import org.example.blocks.input.BlocksFactory;
 import org.example.blocks.input.BlocksReader;
@@ -38,9 +39,14 @@ public class BlockConfiguration {
     }
 
     @Bean
+    public LongestPathTraverser longestPathTraverser(BlockGraphTraverser blockGraphTraverser) {
+        return new LongestPathTraverser(blockGraphTraverser);
+    }
+
+    @Bean
     public BlockPuzzleRunner blockOrganizer(BlocksReader blocksReader,
                                             BlockGraphBuilder blockGraphBuilder,
-                                            BlockGraphTraverser blockGraphTraverser) {
-        return new BlockPuzzleRunner(blocksReader, blockGraphBuilder, blockGraphTraverser);
+                                            LongestPathTraverser longestPathTraverser) {
+        return new BlockPuzzleRunner(blocksReader, blockGraphBuilder, longestPathTraverser);
     }
 }
