@@ -3,10 +3,14 @@ package org.example.blocks;
 import org.apache.commons.lang3.tuple.Pair;
 import org.example.block.graph.BlockGraphBuilder;
 import org.example.block.graph.BlockGraphNode;
-import org.example.block.graph.BlocksGraphTraverser;
+import org.example.block.graph.BlockGraphTraverser;
+import org.example.block.graph.LongestPathTraverser;
+import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Set;
 
@@ -16,18 +20,18 @@ public class BlockPuzzleRunner {
 
     private final BlocksReader blocksReader;
     private final BlockGraphBuilder blockGraphBuilder;
-    private final BlocksGraphTraverser blocksGraphTraverser;
+    private final LongestPathTraverser longestPathTraverser;
 
     public BlockPuzzleRunner(BlocksReader blocksReader,
                              BlockGraphBuilder blockGraphBuilder,
-                             BlocksGraphTraverser blocksGraphTraverser) {
+                             LongestPathTraverser longestPathTraverser) {
         this.blocksReader = requireNonNull(blocksReader);
         this.blockGraphBuilder = requireNonNull(blockGraphBuilder);
-        this.blocksGraphTraverser = requireNonNull(blocksGraphTraverser);
+        this.longestPathTraverser = requireNonNull(longestPathTraverser);
     }
 
-    public void run() throws IOException {
-        List<Block> blockList = blocksReader.readBlocks(System.in);
+    public int run() throws IOException {
+        List<Block> blockList = blocksReader.readBlocks(new BufferedReader(new InputStreamReader(System.in)));
 
         System.out.println("Number of blocks read are " + blockList.size() + "\n" + blockList);
 
@@ -35,8 +39,10 @@ public class BlockPuzzleRunner {
 
         System.out.println("Number of root Nodes are " + rootNodes.size() + "\n" + rootNodes);
 
-        Pair<Integer, List<BlockGraphNode>> longestPathPair = blocksGraphTraverser.getLongestPath(rootNodes);
+        Pair<Integer, List<BlockGraphNode>> longestPathPair = longestPathTraverser.getLongestPath(rootNodes);
 
         System.out.println("Longest path length =" + longestPathPair.getKey() + " Path" + longestPathPair.getValue());
+
+        return longestPathPair.getKey();
     }
 }

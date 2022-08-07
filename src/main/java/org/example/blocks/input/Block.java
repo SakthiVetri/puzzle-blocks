@@ -1,4 +1,4 @@
-package org.example.blocks;
+package org.example.blocks.input;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
@@ -10,7 +10,6 @@ public class Block {
     private int height;
 
     public Block(String blockId, int width, int length, int height) {
-        checkArgument(length >= width);
         this.blockId = requireNonNull(blockId);
         this.width = width;
         this.length = length;

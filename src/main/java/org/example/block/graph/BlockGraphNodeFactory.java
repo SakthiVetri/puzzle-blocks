@@ -1,52 +1,31 @@
 package org.example.block.graph;
 
-import org.example.blocks.Block;
+import org.example.blocks.input.Block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Creates BlockGraphNodes for the given block with different permutations of how it can be stacked.
+ */
 public class BlockGraphNodeFactory {
 
     public List<BlockGraphNode> create(Block block) {
+        int[] dimension = new int[] {block.getWidth(), block.getLength(), block.getHeight()};
+        Arrays.sort(dimension);
+
         List<BlockGraphNode> permutationsList = new ArrayList<>();
-
-        permutationsList.add(new BlockGraphNode(block.getBlockId(), block.getWidth(), block.getLength(), block.getHeight()));
-
-        if (block.getWidth() == block.getLength() && block.getWidth() == block.getHeight()) {
-            return permutationsList;
-        } else if (block.getWidth() == block.getLength()) {
-            int width = block.getHeight();
-            int length = block.getLength();
-            int height = block.getWidth();
-            if (width > length) {
-                permutationsList.add(new BlockGraphNode(block.getBlockId(), length, width, height));
-            } else {
-                permutationsList.add(new BlockGraphNode(block.getBlockId(), width, length, height));
-            }
+        permutationsList.add(new BlockGraphNode(block.getBlockId(), dimension[0], dimension[1], dimension[2]));
+        if (dimension[0] == dimension[1] && dimension[0] == dimension[2]) {
+        } else if (dimension[0] == dimension[1]) {
+            permutationsList.add(new BlockGraphNode(block.getBlockId(), dimension[0], dimension[2], dimension[1]));
+        } else if (dimension[1] == dimension[2]) {
+            permutationsList.add(new BlockGraphNode(block.getBlockId(), dimension[1], dimension[2], dimension[0]));
         } else {
-            if (block.getWidth() != block.getHeight()) {
-                int width = block.getHeight();
-                int height = block.getWidth();
-                int length = block.getLength();
-                if (width > length) {
-                    permutationsList.add(new BlockGraphNode(block.getBlockId(), length, width, height));
-                } else {
-                    permutationsList.add(new BlockGraphNode(block.getBlockId(), width, length, height));
-                }
-            }
-
-            if (block.getLength() != block.getHeight()) {
-                int width = block.getWidth();
-                int length = block.getHeight();
-                int height = block.getLength();
-
-                if (width > length) {
-                    permutationsList.add(new BlockGraphNode(block.getBlockId(), length, width, height));
-                } else {
-                    permutationsList.add(new BlockGraphNode(block.getBlockId(), width, length, height));
-                }
-            }
+            permutationsList.add(new BlockGraphNode(block.getBlockId(), dimension[0], dimension[2], dimension[1]));
+            permutationsList.add(new BlockGraphNode(block.getBlockId(), dimension[1], dimension[2], dimension[0]));
         }
-        return permutationsList;
+        return  permutationsList;
     }
 }
