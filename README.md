@@ -8,3 +8,6 @@ Execute  "mvn clean install" at root directory to create jar.
 
 Execute 
 java -jar target/blocks-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+
+Above command will read block dimensions from commandline.  Please enter one block dimensions per line.  Please enter three comma separated integers for each block dimensions.  Enter exit to mark end of blocks.
