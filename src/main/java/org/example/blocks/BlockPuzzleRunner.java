@@ -36,7 +36,7 @@ public class BlockPuzzleRunner {
 
         Set<BlockGraphNode> rootNodes = blockGraphBuilder.buildGraph(blockList);
 
-        System.out.println("Number of root Nodes are " + rootNodes.size() + "\n" + rootNodes);
+        // System.out.println("Number of root Nodes are " + rootNodes.size() + "\n" + rootNodes);
 
         Pair<Integer, List<BlockGraphNode>> longestPathPair = longestPathTraverser.getLongestPath(rootNodes);
 

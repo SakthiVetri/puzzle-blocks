@@ -32,7 +32,7 @@ public class BlockGraphBuilder {
             }
         }
 
-        System.out.println("All possible blocks are " + blockGraphNodesByDimension.values());
+        // System.out.println("All possible blocks are " + blockGraphNodesByDimension.values());
 
         BlockGraphNode[] uniqueNodes = blockGraphNodesByDimension.values().toArray(new BlockGraphNode[] {});
         for (int i = 0; i < uniqueNodes.length; i++) {
