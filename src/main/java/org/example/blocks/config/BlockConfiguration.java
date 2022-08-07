@@ -1,5 +1,8 @@
 package org.example.blocks.config;
 
+import org.example.block.graph2.BlockGraphBuilder;
+import org.example.block.graph2.BlockGraphNodeFactory;
+import org.example.block.graph2.BlocksGraphTraverser;
 import org.example.blocks.graph.StackableBlocksGraphBuilder;
 import org.example.blocks.graph.StackableBlocksGraphTraverser;
 import org.example.blocks.input.BlockPermutationsGenerator;
@@ -23,24 +26,24 @@ public class BlockConfiguration {
     }
 
     @Bean
-    public BlockPermutationsGenerator blockPermutationsGenerator() {
-        return new BlockPermutationsGenerator();
+    public BlockGraphNodeFactory blockGraphNodeFactory() {
+        return new BlockGraphNodeFactory();
     }
 
     @Bean
-    public StackableBlocksGraphBuilder stackableBlocksGraphBuilder(BlockPermutationsGenerator blockPermutationsGenerator) {
-        return new StackableBlocksGraphBuilder(blockPermutationsGenerator);
+    public BlocksGraphTraverser blocksGraphTraverser() {
+        return new BlocksGraphTraverser();
     }
 
     @Bean
-    public StackableBlocksGraphTraverser stackableBlocksGraphTraverser() {
-        return new StackableBlocksGraphTraverser();
+    public BlockGraphBuilder blockGraphBuilder(BlockGraphNodeFactory blockGraphNodeFactory) {
+        return new BlockGraphBuilder(blockGraphNodeFactory);
     }
 
     @Bean
     public BlockPuzzleRunner blockOrganizer(BlocksReader blocksReader,
-                                            StackableBlocksGraphBuilder stackableBlocksGraphBuilder,
-                                            StackableBlocksGraphTraverser stackableBlocksGraphTraverser) {
-        return new BlockPuzzleRunner(blocksReader, stackableBlocksGraphBuilder, stackableBlocksGraphTraverser);
+                                            BlockGraphBuilder blockGraphBuilder,
+                                            BlocksGraphTraverser blocksGraphTraverser) {
+        return new BlockPuzzleRunner(blocksReader, blockGraphBuilder, blocksGraphTraverser);
     }
 }
