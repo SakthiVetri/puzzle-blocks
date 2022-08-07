@@ -45,9 +45,9 @@ public class BlockPuzzleRunnerTest {
     @Test
     public void test_case1() throws IOException {
         List<Block> blocksList = Lists.newArrayList(
-                new Block("B1",  45,50, 20),
-                new Block("B2",  37,95, 53),
-                new Block("B3",  23,45, 12));
+                new Block("B1",  50, 45,20),
+                new Block("B2",  95,37, 53),
+                new Block("B3",  45,23, 12));
         when(blocksReader.readBlocks(any())).thenReturn(blocksList);
 
         // When
@@ -55,5 +55,37 @@ public class BlockPuzzleRunnerTest {
 
         // Then
         assertThat(length, is(190));
+    }
+
+    @Test
+    public void test_case2() throws IOException {
+        List<Block> blocksList = Lists.newArrayList(
+                new Block("B1",  38,25,45),
+                new Block("B2",  76,35,3));
+        when(blocksReader.readBlocks(any())).thenReturn(blocksList);
+
+        // When
+        int length = blockPuzzleRunner.run();
+
+        // Then
+        assertThat(length, is(76));
+    }
+
+    @Test
+    public void test_case3() throws IOException {
+        List<Block> blocksList = Lists.newArrayList(
+                new Block("B1",  7,11,17),
+                new Block("B2",  7,17,11),
+                new Block("B3",  11,7,17),
+                new Block("B4",  11,17,7),
+                new Block("B5",  17,7,11),
+                new Block("B6",  17,11,7));
+        when(blocksReader.readBlocks(any())).thenReturn(blocksList);
+
+        // When
+        int length = blockPuzzleRunner.run();
+
+        // Then
+        assertThat(length, is(102));
     }
 }

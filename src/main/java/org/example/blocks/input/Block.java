@@ -10,7 +10,6 @@ public class Block {
     private int height;
 
     public Block(String blockId, int width, int length, int height) {
-        checkArgument(length >= width);
         this.blockId = requireNonNull(blockId);
         this.width = width;
         this.length = length;

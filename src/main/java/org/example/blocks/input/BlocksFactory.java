@@ -17,7 +17,7 @@ public class BlocksFactory {
         String[] values = text.split(",");
         checkArgument(values.length == 3);
 
-        List<Integer> dimensions = Arrays.stream(values).map(Integer::parseInt).sorted().collect(Collectors.toList());
+        List<Integer> dimensions = Arrays.stream(values).map(Integer::parseInt).collect(Collectors.toList());
         return new Block(String.valueOf(blockId++),
                 dimensions.get(0),
                 dimensions.get(1),
