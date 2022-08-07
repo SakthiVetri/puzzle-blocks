@@ -1,8 +1,5 @@
 package org.example.blocks.input;
 
-import org.example.blocks.Block;
-import org.example.blocks.input.BlocksFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

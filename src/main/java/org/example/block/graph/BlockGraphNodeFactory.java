@@ -1,6 +1,6 @@
 package org.example.block.graph;
 
-import org.example.blocks.Block;
+import org.example.blocks.input.Block;
 
 import java.util.ArrayList;
 import java.util.List;

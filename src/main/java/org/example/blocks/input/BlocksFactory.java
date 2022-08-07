@@ -1,7 +1,5 @@
 package org.example.blocks.input;
 
-import org.example.blocks.Block;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
