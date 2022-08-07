@@ -30,6 +30,7 @@ public class BlockPuzzleRunner {
     }
 
     public int run() throws IOException {
+        System.out.println("Please enter dimensions as one block per line. Please enter the values as 3 comma separated integers (1,2,3) for each block.  Type exit to end.");
         List<Block> blockList = blocksReader.readBlocks(new BufferedReader(new InputStreamReader(System.in)));
 
         System.out.println("Number of blocks read are " + blockList.size() + "\n" + blockList);
@@ -40,7 +41,7 @@ public class BlockPuzzleRunner {
 
         Pair<Integer, List<BlockGraphNode>> longestPathPair = longestPathTraverser.getLongestPath(rootNodes);
 
-        System.out.println("Longest path length =" + longestPathPair.getKey() + " Path" + longestPathPair.getValue());
+        System.out.println("Longest path length =" + longestPathPair.getKey() + "\nPath = " + longestPathPair.getValue());
 
         return longestPathPair.getKey();
     }
