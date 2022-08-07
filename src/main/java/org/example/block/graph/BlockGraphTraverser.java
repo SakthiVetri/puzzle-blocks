@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 
-public class BlocksGraphTraverser {
+public class BlockGraphTraverser {
 
     public Pair<Integer, List<BlockGraphNode>> getLongestPath(Set<BlockGraphNode> rootNodes) {
 

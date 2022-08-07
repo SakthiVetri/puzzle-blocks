@@ -2,7 +2,7 @@ package org.example.blocks.config;
 
 import org.example.block.graph.BlockGraphBuilder;
 import org.example.block.graph.BlockGraphNodeFactory;
-import org.example.block.graph.BlocksGraphTraverser;
+import org.example.block.graph.BlockGraphTraverser;
 import org.example.blocks.BlockPuzzleRunner;
 import org.example.blocks.input.BlocksFactory;
 import org.example.blocks.input.BlocksReader;
@@ -28,8 +28,8 @@ public class BlockConfiguration {
     }
 
     @Bean
-    public BlocksGraphTraverser blocksGraphTraverser() {
-        return new BlocksGraphTraverser();
+    public BlockGraphTraverser blocksGraphTraverser() {
+        return new BlockGraphTraverser();
     }
 
     @Bean
@@ -40,7 +40,7 @@ public class BlockConfiguration {
     @Bean
     public BlockPuzzleRunner blockOrganizer(BlocksReader blocksReader,
                                             BlockGraphBuilder blockGraphBuilder,
-                                            BlocksGraphTraverser blocksGraphTraverser) {
-        return new BlockPuzzleRunner(blocksReader, blockGraphBuilder, blocksGraphTraverser);
+                                            BlockGraphTraverser blockGraphTraverser) {
+        return new BlockPuzzleRunner(blocksReader, blockGraphBuilder, blockGraphTraverser);
     }
 }
