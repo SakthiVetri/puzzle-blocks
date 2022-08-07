@@ -1,4 +1,4 @@
-package org.example.block.graph;
+package org.example.blocks.graph;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.tuple.Pair;
