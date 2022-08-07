@@ -69,6 +69,6 @@ public class BlockGraphNode {
 
     @Override
     public String toString() {
-        return "Block_" + sameSizeNodes.size() + "_[" + width + "," + length + "," + height +"]";
+        return "B_" + sameSizeNodes.size() + "x_[" + width + "," + length + "," + height + "]";
     }
 }
