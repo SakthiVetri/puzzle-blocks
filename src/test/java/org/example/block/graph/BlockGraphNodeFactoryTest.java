@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Unit test for {@Link BlockPermutationsGenerator}
+ * Unit test for {@link BlockGraphNodeFactory}
  */
 public class BlockGraphNodeFactoryTest {
 
@@ -45,8 +45,8 @@ public class BlockGraphNodeFactoryTest {
 
         // Then
         assertThat(blockGraphNodeList.size(), is(2));
-        assertBlock(blockGraphNodeList.get(0), "Id1", 1, 2, 1);
-        assertBlock(blockGraphNodeList.get(1), "Id1", 1, 1, 2);
+        assertBlock(blockGraphNodeList.get(0), "Id1", 1, 1, 2);
+        assertBlock(blockGraphNodeList.get(1), "Id1", 1, 2, 1);
     }
 
     @Test
@@ -59,8 +59,8 @@ public class BlockGraphNodeFactoryTest {
 
         // Then
         assertThat(blockGraphNodeList.size(), is(2));
-        assertBlock(blockGraphNodeList.get(0), "Id1", 2, 2, 1);
-        assertBlock(blockGraphNodeList.get(1), "Id1", 1, 2, 2);
+        assertBlock(blockGraphNodeList.get(0), "Id1", 1, 2, 2);
+        assertBlock(blockGraphNodeList.get(1), "Id1", 2, 2, 1);
     }
 
     @Test
@@ -88,8 +88,8 @@ public class BlockGraphNodeFactoryTest {
         // Then
         assertThat(blockGraphNodeList.size(), is(3));
         assertBlock(blockGraphNodeList.get(0), "Id1", 1, 2, 3);
-        assertBlock(blockGraphNodeList.get(1), "Id1", 2, 3, 1);
-        assertBlock(blockGraphNodeList.get(2), "Id1", 1, 3, 2);
+        assertBlock(blockGraphNodeList.get(1), "Id1", 1, 3, 2);
+        assertBlock(blockGraphNodeList.get(2), "Id1", 2, 3, 1);
     }
 
     private void assertBlock(BlockGraphNode blockGraphNode, String id, int width, int length, int height) {
