@@ -19,10 +19,8 @@ public class BlocksReader {
     }
 
 
-    public List<Block> readBlocks(InputStream inputStream) throws IOException {
-
+    public List<Block> readBlocks(BufferedReader bufferedReader) throws IOException {
         List<Block> blockList = new ArrayList<>();
-        BufferedReader  bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             if (EXIT.equalsIgnoreCase(line)) {

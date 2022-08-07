@@ -8,7 +8,9 @@ import org.example.block.graph.LongestPathTraverser;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +31,7 @@ public class BlockPuzzleRunner {
     }
 
     public int run() throws IOException {
-        List<Block> blockList = blocksReader.readBlocks(System.in);
+        List<Block> blockList = blocksReader.readBlocks(new BufferedReader(new InputStreamReader(System.in)));
 
         System.out.println("Number of blocks read are " + blockList.size() + "\n" + blockList);
 
