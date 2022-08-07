@@ -1,10 +1,7 @@
 package org.example.blocks;
 
 import com.google.common.collect.Lists;
-import org.example.block.graph.BlockGraphBuilder;
-import org.example.block.graph.BlockGraphNodeFactory;
-import org.example.block.graph.BlockGraphTraverser;
-import org.example.block.graph.LongestPathTraverser;
+import org.example.block.graph.*;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 import org.junit.Before;
@@ -38,7 +35,7 @@ public class BlockPuzzleRunnerTest {
         BlockGraphBuilder blockGraphBuilder = new BlockGraphBuilder(blockGraphNodeFactory);
 
         BlockGraphTraverser blockGraphTraverser = new BlockGraphTraverser();
-        LongestPathTraverser longestPathTraverser = new LongestPathTraverser(blockGraphTraverser);
+        LongestPathTraverser longestPathTraverser = new LongestPathTraverser(blockGraphTraverser, new PathLengthCalculator());
         blockPuzzleRunner = new BlockPuzzleRunner(blocksReader, blockGraphBuilder, longestPathTraverser);
     }
 

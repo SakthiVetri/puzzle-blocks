@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Creates BlockGraphNodes for the given block with different permutations of how it can be stacked.
+ */
 public class BlockGraphNodeFactory {
 
     public List<BlockGraphNode> create(Block block) {

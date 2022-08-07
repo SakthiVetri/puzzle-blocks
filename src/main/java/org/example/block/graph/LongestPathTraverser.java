@@ -10,9 +10,11 @@ import static java.util.Objects.requireNonNull;
 public class LongestPathTraverser {
 
     private final BlockGraphTraverser blockGraphTraverser;
+    private final PathLengthCalculator pathLengthCalculator;
 
-    public LongestPathTraverser(BlockGraphTraverser blockGraphTraverser) {
+    public LongestPathTraverser(BlockGraphTraverser blockGraphTraverser, PathLengthCalculator pathLengthCalculator) {
         this.blockGraphTraverser = requireNonNull(blockGraphTraverser);
+        this.pathLengthCalculator = requireNonNull(pathLengthCalculator);
     }
 
     public Pair<Integer, List<BlockGraphNode>> getLongestPath(Set<BlockGraphNode> rootNodes) {
@@ -23,7 +25,7 @@ public class LongestPathTraverser {
         for (BlockGraphNode blockGraphNode : rootNodes) {
             List<List<BlockGraphNode>> pathsFromRoot = blockGraphTraverser.getAllPaths(blockGraphNode);
             for (List<BlockGraphNode> path : pathsFromRoot) {
-                int newHeight = findHeight(path);
+                int newHeight = pathLengthCalculator.calculateLength(path);
                 if (newHeight > maxHeight) {
                     maxHeight = newHeight;
                     longestPath = path;
@@ -33,11 +35,4 @@ public class LongestPathTraverser {
         return Pair.of(maxHeight, longestPath);
     }
 
-    private int findHeight(List<BlockGraphNode> blockGraphNodes) {
-        int height = 0;
-        for (BlockGraphNode blockGraphNode : blockGraphNodes) {
-            height = height + (blockGraphNode.getSameSizeNodeCount() * blockGraphNode.getHeight());
-        }
-        return height;
-    }
 }
