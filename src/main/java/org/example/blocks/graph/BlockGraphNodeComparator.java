@@ -1,4 +1,4 @@
-package org.example.block.graph;
+package org.example.blocks.graph;
 
 public class BlockGraphNodeComparator {
     /**

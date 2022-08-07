@@ -1,10 +1,9 @@
 package org.example.blocks;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.example.block.graph.BlockGraphBuilder;
-import org.example.block.graph.BlockGraphNode;
-import org.example.block.graph.BlockGraphTraverser;
-import org.example.block.graph.LongestPathTraverser;
+import org.example.blocks.graph.BlockGraphBuilder;
+import org.example.blocks.graph.BlockGraphNode;
+import org.example.blocks.graph.LongestPathTraverser;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 

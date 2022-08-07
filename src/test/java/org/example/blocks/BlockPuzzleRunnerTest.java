@@ -1,7 +1,7 @@
 package org.example.blocks;
 
 import com.google.common.collect.Lists;
-import org.example.block.graph.*;
+import org.example.blocks.graph.*;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 import org.junit.Before;

@@ -1,7 +1,7 @@
 package org.example.blocks.config;
 
-import org.example.block.graph.*;
 import org.example.blocks.BlockPuzzleRunner;
+import org.example.blocks.graph.*;
 import org.example.blocks.input.BlocksFactory;
 import org.example.blocks.input.BlocksReader;
 import org.springframework.context.annotation.Bean;
