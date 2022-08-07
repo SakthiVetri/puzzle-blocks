@@ -1,8 +1,8 @@
 package org.example.blocks.config;
 
-import org.example.block.graph2.BlockGraphBuilder;
-import org.example.block.graph2.BlockGraphNodeFactory;
-import org.example.block.graph2.BlocksGraphTraverser;
+import org.example.block.graph.BlockGraphBuilder;
+import org.example.block.graph.BlockGraphNodeFactory;
+import org.example.block.graph.BlocksGraphTraverser;
 import org.example.blocks.BlockPuzzleRunner;
 import org.example.blocks.input.BlocksFactory;
 import org.example.blocks.input.BlocksReader;

@@ -1,4 +1,4 @@
-package org.example.block.graph2;
+package org.example.block.graph;
 
 import org.example.blocks.Block;
 import org.junit.Before;
