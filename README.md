@@ -16,7 +16,11 @@ Please enter three comma separated integers for each block dimensions.  Enter ex
 # Example
 $java -jar target/blocks-1.0-SNAPSHOT-jar-with-dependencies.jar
 
-Please enter dimensions as one block per line. Please enter the values as 3 comma separated integers (1,2,3) for each block.  Type exit to end.
+Please enter dimensions as one block per line.
+
+For each block enter 3 integers separated by comma, example: 5,2,3  
+
+Type exit to finish entering.
 
 1,3,2
 
