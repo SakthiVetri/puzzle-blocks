@@ -75,6 +75,24 @@ public class BlockNode {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other instanceof BlockNode) {
+            BlockNode otherNode = (BlockNode) other;
+            return this.height == otherNode.height &&
+                    this.length == otherNode.length &&
+                    this.width == otherNode.width &&
+                    this.blockId.equals(otherNode.blockId) &&
+                    this.childNodes.equals(otherNode.childNodes);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return blockId.hashCode() << 24 + width << 16 + length << 8 + height;
+    }
+
+    @Override
     public String toString() {
         return blockId + "[" + width + "," + length + "," + height + "]";
     }

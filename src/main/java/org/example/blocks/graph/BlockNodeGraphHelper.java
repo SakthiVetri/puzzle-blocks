@@ -36,12 +36,15 @@ public class BlockNodeGraphHelper {
 
             // if the new node can be a parent of the existing child,
             if (blockNodeComparator.isValidChild(newNode, childNode)) {
+                logger.info("Adding  " + newNode + " as parent of " + childNode);
+
                 addAsParentNode(childNode, newNode);
 
                 parentNode.removeChildNode(childNode);
                 parentNode.addChildNode(newNode);
                 isNodeAdded = true;
             } else if (blockNodeComparator.isValidChild(childNode, newNode)) {
+                logger.info("Adding  " + newNode + " as child of " + childNode);
                 addAsChildNode(childNode, newNode);
                 isNodeAdded = true;
             }
@@ -55,7 +58,7 @@ public class BlockNodeGraphHelper {
         for (BlockNode childNode : parentNode.getChildNodes()) {
             if (maxHeightChild == null) {
                 maxHeightChild = childNode;
-            } else if (maxHeightChild.getHeight() < childNode.getHeight()) {
+            } else if (maxHeightChild.getStackHeight() < childNode.getStackHeight()) {
                 maxHeightChild = childNode;
             }
         }
@@ -66,6 +69,8 @@ public class BlockNodeGraphHelper {
 
     public void addAsParentNode(BlockNode node, BlockNode newNode) {
         newNode.addChildNode(node);
-        newNode.updateMaxChildNode(node);
+        if (newNode.getMaxChildStackHeight() < node.getStackHeight()) {
+            newNode.updateMaxChildNode(node);
+        }
     }
 }

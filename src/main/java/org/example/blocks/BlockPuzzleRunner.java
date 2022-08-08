@@ -44,13 +44,15 @@ public class BlockPuzzleRunner {
         }
 
         BlockNode maxHeightNode = blockNodeGraph.getMaxHeightChild();
-        int maxHeightPath = maxHeightNode != null ? maxHeightNode.getStackHeight() : 0;
+        int maxHeight = maxHeightNode != null ? maxHeightNode.getStackHeight() : 0;
 
+        System.out.println("Maximum path length is " + maxHeight);
         while (maxHeightNode != null) {
-            logger.info(maxHeightNode.toString());
+            System.out.println(maxHeightNode.toString());
             maxHeightNode = maxHeightNode.getMaxLengthChild();
         }
 
-        return maxHeightPath;
+
+        return maxHeight;
     }
 }
