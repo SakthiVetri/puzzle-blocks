@@ -53,10 +53,6 @@ public class BlockNode {
         return Set.copyOf(childNodes);
     }
 
-    public String getDimension() {
-        return width + "_" + length + "_" + height;
-    }
-
     public int getStackHeight() {
         return maxChildStackHeight + height;
     }

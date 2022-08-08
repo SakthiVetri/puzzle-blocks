@@ -1,6 +1,5 @@
 package org.example.blocks.input;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 public class Block {
