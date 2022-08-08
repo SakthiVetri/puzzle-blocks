@@ -1,7 +1,10 @@
 package org.example.blocks.config;
 
 import org.example.blocks.BlockPuzzleRunner;
-import org.example.blocks.graph.*;
+import org.example.blocks.graph.BlockNodeComparator;
+import org.example.blocks.graph.BlockNodeFactory;
+import org.example.blocks.graph.BlockNodeGraph;
+import org.example.blocks.graph.BlockNodeGraphHelper;
 import org.example.blocks.input.BlocksFactory;
 import org.example.blocks.input.BlocksReader;
 import org.springframework.context.annotation.Bean;
@@ -21,34 +24,30 @@ public class BlockConfiguration {
     }
 
     @Bean
-    public BlockGraphNodeFactory blockGraphNodeFactory() {
-        return new BlockGraphNodeFactory();
+    public BlockNodeFactory blockNodeFactory() {
+        return new BlockNodeFactory();
     }
 
     @Bean
-    public BlockGraphTraverser blocksGraphTraverser() {
-        return new BlockGraphTraverser();
+    public BlockNodeComparator blockNodeComparator() {
+        return new BlockNodeComparator();
     }
 
     @Bean
-    public BlockGraphBuilder blockGraphBuilder(BlockGraphNodeFactory blockGraphNodeFactory) {
-        return new BlockGraphBuilder(blockGraphNodeFactory);
+    public BlockNodeGraphHelper blockNodeGraphHelper(BlockNodeComparator blockNodeComparator) {
+        return new BlockNodeGraphHelper(blockNodeComparator);
     }
 
     @Bean
-    public PathLengthCalculator pathLengthCalculator() {
-        return new PathLengthCalculator();
-    }
-
-    @Bean
-    public LongestPathTraverser longestPathTraverser(BlockGraphTraverser blockGraphTraverser, PathLengthCalculator pathLengthCalculator) {
-        return new LongestPathTraverser(blockGraphTraverser, pathLengthCalculator);
+    public BlockNodeGraph blockNodeGraph(BlockNodeComparator blockNodeComparator,
+                                         BlockNodeGraphHelper blockNodeGraphHelper) {
+        return new BlockNodeGraph(blockNodeComparator, blockNodeGraphHelper);
     }
 
     @Bean
     public BlockPuzzleRunner blockOrganizer(BlocksReader blocksReader,
-                                            BlockGraphBuilder blockGraphBuilder,
-                                            LongestPathTraverser longestPathTraverser) {
-        return new BlockPuzzleRunner(blocksReader, blockGraphBuilder, longestPathTraverser);
+                                            BlockNodeFactory blockNodeFactory,
+                                            BlockNodeGraph blockNodeGraph) {
+        return new BlockPuzzleRunner(blocksReader, blockNodeFactory, blockNodeGraph);
     }
 }

@@ -1,48 +1,58 @@
 package org.example.blocks;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.example.blocks.graph.BlockGraphBuilder;
-import org.example.blocks.graph.BlockGraphNode;
-import org.example.blocks.graph.LongestPathTraverser;
+import org.example.blocks.graph.BlockNode;
+import org.example.blocks.graph.BlockNodeFactory;
+import org.example.blocks.graph.BlockNodeGraph;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
 public class BlockPuzzleRunner {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     private final BlocksReader blocksReader;
-    private final BlockGraphBuilder blockGraphBuilder;
-    private final LongestPathTraverser longestPathTraverser;
+    private final BlockNodeFactory blockNodeFactory;
+    private final BlockNodeGraph blockNodeGraph;
 
     public BlockPuzzleRunner(BlocksReader blocksReader,
-                             BlockGraphBuilder blockGraphBuilder,
-                             LongestPathTraverser longestPathTraverser) {
+                             BlockNodeFactory blockNodeFactory,
+                             BlockNodeGraph blockNodeGraph) {
         this.blocksReader = requireNonNull(blocksReader);
-        this.blockGraphBuilder = requireNonNull(blockGraphBuilder);
-        this.longestPathTraverser = requireNonNull(longestPathTraverser);
+        this.blockNodeFactory = requireNonNull(blockNodeFactory);
+        this.blockNodeGraph = requireNonNull(blockNodeGraph);
     }
 
     public int run() throws IOException {
         System.out.println("Please enter dimensions as one block per line. Please enter the values as 3 comma separated integers (1,2,3) for each block.  Type exit to end.");
         List<Block> blockList = blocksReader.readBlocks(new BufferedReader(new InputStreamReader(System.in)));
 
-        System.out.println("Number of blocks read are " + blockList.size() + "\n" + blockList);
+        for (Block block : blockList) {
+            List<BlockNode> blockNodeList = blockNodeFactory.create(block);
 
-        Set<BlockGraphNode> rootNodes = blockGraphBuilder.buildGraph(blockList);
+            for (BlockNode blockNode : blockNodeList) {
+                blockNodeGraph.addNode(blockNode);
+            }
+        }
 
-        // System.out.println("Number of root Nodes are " + rootNodes.size() + "\n" + rootNodes);
+        BlockNode maxHeightNode = blockNodeGraph.getMaxHeightChild();
+        int maxHeight = maxHeightNode != null ? maxHeightNode.getStackHeight() : 0;
 
-        Pair<Integer, List<BlockGraphNode>> longestPathPair = longestPathTraverser.getLongestPath(rootNodes);
+        System.out.println("Maximum path length is " + maxHeight);
+        while (maxHeightNode != null) {
+            System.out.println(maxHeightNode.toString());
+            maxHeightNode = maxHeightNode.getMaxLengthChild();
+        }
 
-        System.out.println("Longest path length =" + longestPathPair.getKey() + "\nPath = " + longestPathPair.getValue());
 
-        return longestPathPair.getKey();
+        return maxHeight;
     }
 }
