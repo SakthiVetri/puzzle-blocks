@@ -1,12 +1,8 @@
 package org.example.blocks;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.example.blocks.graph.BlockGraphBuilder;
-import org.example.blocks.graph.BlockGraphNode;
-import org.example.blocks.graph.LongestPathTraverser;
-import org.example.blocks.graph3.BlockNode;
-import org.example.blocks.graph3.BlockNodeFactory;
-import org.example.blocks.graph3.BlockNodeGraph;
+import org.example.blocks.graph.BlockNode;
+import org.example.blocks.graph.BlockNodeFactory;
+import org.example.blocks.graph.BlockNodeGraph;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 import org.slf4j.Logger;
@@ -15,10 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 

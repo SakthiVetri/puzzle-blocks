@@ -1,10 +1,10 @@
 package org.example.blocks;
 
 import com.google.common.collect.Lists;
-import org.example.blocks.graph3.BlockNodeComparator;
-import org.example.blocks.graph3.BlockNodeFactory;
-import org.example.blocks.graph3.BlockNodeGraph;
-import org.example.blocks.graph3.BlockNodeGraphHelper;
+import org.example.blocks.graph.BlockNodeComparator;
+import org.example.blocks.graph.BlockNodeFactory;
+import org.example.blocks.graph.BlockNodeGraph;
+import org.example.blocks.graph.BlockNodeGraphHelper;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package org.example.blocks.graph3;
+package org.example.blocks.graph;
 
 import java.util.*;
 
