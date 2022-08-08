@@ -87,4 +87,21 @@ public class BlockPuzzleRunnerTest {
         // Then
         assertThat(length, is(102));
     }
+
+    @Test
+    public void test_case4() throws IOException {
+        List<Block> blocksList = Lists.newArrayList(
+                new Block("B1",  10, 5,4),
+                new Block("B2",  3,4,8),
+                new Block("B3",  7,2,3),
+                new Block("B4",  6,2, 2),
+                new Block("B5",  5,1,1));
+        when(blocksReader.readBlocks(any())).thenReturn(blocksList);
+
+        // When
+        int length = blockPuzzleRunner.run();
+
+        // Then
+        assertThat(length, is(36));
+    }
 }

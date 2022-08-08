@@ -30,7 +30,7 @@ public class BlockNodeGraphHelper {
         boolean isNodeAdded = false;
         for (BlockNode childNode : parentNode.getChildNodes()) {
             if (childNode.getBlockId().equals(newNode.getBlockId())) {
-                logger.debug("ParentNode={} and childNode={} are same", parentNode, newNode);
+                logger.debug("ParentNode={} and childNode={} has same ids", parentNode, newNode);
                 continue;
             }
 
@@ -54,14 +54,7 @@ public class BlockNodeGraphHelper {
             parentNode.addChildNode(newNode);
         }
 
-        BlockNode maxHeightChild = null;
-        for (BlockNode childNode : parentNode.getChildNodes()) {
-            if (maxHeightChild == null) {
-                maxHeightChild = childNode;
-            } else if (maxHeightChild.getStackHeight() < childNode.getStackHeight()) {
-                maxHeightChild = childNode;
-            }
-        }
+        BlockNode maxHeightChild = blockNodeComparator.findMaxHeightNode(parentNode.getChildNodes());
         if (maxHeightChild != null) {
             parentNode.updateMaxChildNode(maxHeightChild);
         }
