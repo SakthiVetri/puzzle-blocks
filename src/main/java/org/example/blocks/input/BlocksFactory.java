@@ -15,7 +15,7 @@ public class BlocksFactory {
      */
     public Block createBlock(String text) {
         String[] values = text.split(",");
-        checkArgument(values.length == 3);
+        checkArgument(values.length == 3, "Please enter three integers separated by ',' in each line");
 
         List<Integer> dimensions = Arrays.stream(values).map(Integer::parseInt).collect(Collectors.toList());
         return new Block(String.valueOf(blockId++),

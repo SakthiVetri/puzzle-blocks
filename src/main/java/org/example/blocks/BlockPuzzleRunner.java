@@ -17,8 +17,6 @@ import static java.util.Objects.requireNonNull;
 
 public class BlockPuzzleRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-
     private final BlocksReader blocksReader;
     private final BlockNodeFactory blockNodeFactory;
     private final BlockNodeGraph blockNodeGraph;
@@ -32,7 +30,7 @@ public class BlockPuzzleRunner {
     }
 
     public int run() throws IOException {
-        System.out.println("Please enter dimensions as one block per line. Please enter the values as 3 comma separated integers (1,2,3) for each block.  Type exit to end.");
+        System.out.println("Please enter dimensions as one block per line. \nFor each block enter 3 integers separated by comma, example: 5,2,3  \nType exit to finish entering.");
         List<Block> blockList = blocksReader.readBlocks(new BufferedReader(new InputStreamReader(System.in)));
 
         for (Block block : blockList) {
