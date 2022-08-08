@@ -2,9 +2,14 @@ package org.example.blocks.graph;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.util.collections.Sets;
+
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Unit test fpr {@link BlockNodeComparator}
@@ -54,5 +59,22 @@ public class BlockNodeComparatorTest {
 
         // Then
         assertThat(isValidChild, is(true));
+    }
+
+    @Test
+    public void testFindMaxHeightNode() {
+        // Given
+        BlockNode blockNode1 = mock(BlockNode.class);
+        BlockNode blockNode2 = mock(BlockNode.class);
+        when(blockNode1.getStackHeight()).thenReturn(10);
+        when(blockNode2.getStackHeight()).thenReturn(20);
+
+        Set<BlockNode> blockNodeSet = Sets.newSet(blockNode1, blockNode2);
+
+        // When
+        BlockNode maxHeightBlock = blockNodeComparator.findMaxHeightNode(blockNodeSet);
+
+        // Then
+        assertThat(maxHeightBlock, is(blockNode2));
     }
 }

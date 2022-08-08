@@ -58,15 +58,7 @@ public class BlockNodeGraph {
             rootNodes.add(newNode);
         }
 
-        maxHeightChild = null;
-        for (BlockNode rootNode : rootNodes) {
-            if (maxHeightChild == null) {
-                maxHeightChild = rootNode;
-            } else if (maxHeightChild.getStackHeight() < rootNode.getStackHeight()) {
-                maxHeightChild = rootNode;
-            }
-        }
-
+        maxHeightChild = blockNodeComparator.findMaxHeightNode(rootNodes);
         logger.info("RootNodes " + rootNodes + " - MaxHeightChild " + maxHeightChild + " Height " + maxHeightChild.getStackHeight());
     }
 
