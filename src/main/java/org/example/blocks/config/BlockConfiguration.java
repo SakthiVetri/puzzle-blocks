@@ -3,7 +3,6 @@ package org.example.blocks.config;
 import org.example.blocks.BlockPuzzleRunner;
 import org.example.blocks.graph.BlockNodeComparator;
 import org.example.blocks.graph.BlockNodeFactory;
-import org.example.blocks.graph.BlockNodeGraph;
 import org.example.blocks.graph.BlockNodeGraphHelper;
 import org.example.blocks.input.BlocksFactory;
 import org.example.blocks.input.BlocksReader;
@@ -39,15 +38,9 @@ public class BlockConfiguration {
     }
 
     @Bean
-    public BlockNodeGraph blockNodeGraph(BlockNodeComparator blockNodeComparator,
-                                         BlockNodeGraphHelper blockNodeGraphHelper) {
-        return new BlockNodeGraph(blockNodeComparator, blockNodeGraphHelper);
-    }
-
-    @Bean
     public BlockPuzzleRunner blockOrganizer(BlocksReader blocksReader,
                                             BlockNodeFactory blockNodeFactory,
-                                            BlockNodeGraph blockNodeGraph) {
-        return new BlockPuzzleRunner(blocksReader, blockNodeFactory, blockNodeGraph);
+                                            BlockNodeGraphHelper blockNodeGraphHelper) {
+        return new BlockPuzzleRunner(blocksReader, blockNodeFactory, blockNodeGraphHelper);
     }
 }

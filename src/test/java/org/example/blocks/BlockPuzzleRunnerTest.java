@@ -3,7 +3,6 @@ package org.example.blocks;
 import com.google.common.collect.Lists;
 import org.example.blocks.graph.BlockNodeComparator;
 import org.example.blocks.graph.BlockNodeFactory;
-import org.example.blocks.graph.BlockNodeGraph;
 import org.example.blocks.graph.BlockNodeGraphHelper;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
@@ -37,8 +36,7 @@ public class BlockPuzzleRunnerTest {
         BlockNodeFactory blockNodeFactory = new BlockNodeFactory();
         BlockNodeComparator blockNodeComparator = new BlockNodeComparator();
         BlockNodeGraphHelper blockNodeGraphHelper = new BlockNodeGraphHelper(blockNodeComparator);
-        BlockNodeGraph blockNodeGraph = new BlockNodeGraph(blockNodeComparator, blockNodeGraphHelper);
-        blockPuzzleRunner = new BlockPuzzleRunner(blocksReader, blockNodeFactory, blockNodeGraph);
+        blockPuzzleRunner = new BlockPuzzleRunner(blocksReader, blockNodeFactory, blockNodeGraphHelper);
     }
 
     @Test

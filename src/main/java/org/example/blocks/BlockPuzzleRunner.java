@@ -2,11 +2,9 @@ package org.example.blocks;
 
 import org.example.blocks.graph.BlockNode;
 import org.example.blocks.graph.BlockNodeFactory;
-import org.example.blocks.graph.BlockNodeGraph;
+import org.example.blocks.graph.BlockNodeGraphHelper;
 import org.example.blocks.input.Block;
 import org.example.blocks.input.BlocksReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,38 +17,37 @@ public class BlockPuzzleRunner {
 
     private final BlocksReader blocksReader;
     private final BlockNodeFactory blockNodeFactory;
-    private final BlockNodeGraph blockNodeGraph;
+    private final BlockNodeGraphHelper blockNodeGraphHelper;
 
     public BlockPuzzleRunner(BlocksReader blocksReader,
                              BlockNodeFactory blockNodeFactory,
-                             BlockNodeGraph blockNodeGraph) {
+                             BlockNodeGraphHelper blockNodeGraphHelper) {
         this.blocksReader = requireNonNull(blocksReader);
         this.blockNodeFactory = requireNonNull(blockNodeFactory);
-        this.blockNodeGraph = requireNonNull(blockNodeGraph);
+        this.blockNodeGraphHelper = requireNonNull(blockNodeGraphHelper);
     }
 
     public int run() throws IOException {
         System.out.println("Please enter dimensions as one block per line. \nFor each block enter 3 integers separated by comma, example: 5,2,3  \nType exit to finish entering.");
         List<Block> blockList = blocksReader.readBlocks(new BufferedReader(new InputStreamReader(System.in)));
 
+        BlockNode root = new BlockNode("Root", 0, 0, 0);
         for (Block block : blockList) {
             List<BlockNode> blockNodeList = blockNodeFactory.create(block);
 
             for (BlockNode blockNode : blockNodeList) {
-                blockNodeGraph.addNode(blockNode);
+                blockNodeGraphHelper.addAsChildNode(root, blockNode);
             }
         }
 
-        BlockNode maxHeightNode = blockNodeGraph.getMaxHeightChild();
-        int maxHeight = maxHeightNode != null ? maxHeightNode.getStackHeight() : 0;
+        System.out.println("Maximum path length is " + root.getStackHeight());
 
-        System.out.println("Maximum path length is " + maxHeight);
-        while (maxHeightNode != null) {
-            System.out.println(maxHeightNode.toString());
-            maxHeightNode = maxHeightNode.getMaxLengthChild();
+        BlockNode blockNode = root;
+        while (blockNode != null) {
+            System.out.println(blockNode.toString());
+            blockNode = blockNode.getMaxLengthChild();
         }
 
-
-        return maxHeight;
+        return root.getStackHeight();
     }
 }
