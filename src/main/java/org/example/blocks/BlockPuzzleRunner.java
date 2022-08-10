@@ -42,10 +42,10 @@ public class BlockPuzzleRunner {
 
         System.out.println("Maximum path length is " + root.getStackHeight());
 
-        BlockNode blockNode = root;
-        while (blockNode != null) {
-            System.out.println(blockNode.toString());
-            blockNode = blockNode.getMaxLengthChild();
+        BlockNode maxStackNode = root.getMaxLengthChild();
+        while (maxStackNode != null) {
+            System.out.println(maxStackNode.toString());
+            maxStackNode = maxStackNode.getMaxLengthChild();
         }
 
         return root.getStackHeight();
